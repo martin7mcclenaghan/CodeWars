@@ -31,9 +31,6 @@ public class Main {
 
         }
 
-        System.out.println("Normal = " + normalTicket);
-        System.out.println("Card Ceil = " + Math.ceil(specialTicket));
-        System.out.println("Card Round = " + Math.round(specialTicket));
         return i;
     }
 }
