@@ -40,8 +40,8 @@ public class MainTest {
     }
 
     @Test
-    public void movieTest () {
-        assertEquals(numberOfVisits,Main.movie(cardPrice,normalTicketPrice,cardDiscountPercentage));
+    public void movieTest() {
+        assertEquals(numberOfVisits, Main.movie(cardPrice, normalTicketPrice, cardDiscountPercentage));
     }
 
 
