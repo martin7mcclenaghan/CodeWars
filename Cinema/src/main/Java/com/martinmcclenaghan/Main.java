@@ -1,6 +1,6 @@
 package Java.com.martinmcclenaghan;
 
-//https://www.codewars.com/kata/562f91ff6a8b77dfe900006e
+//Details of challenge can be found here https://www.codewars.com/kata/562f91ff6a8b77dfe900006e
 
 public class Main {
 
