@@ -10,15 +10,15 @@ public class Main {
 
         double[] start = {0, 1, 1};
 
-        double[] end = tribonacci(start, 2);
+        double[] end = tribonacciSimple(start, 2);
 
         System.out.println(Arrays.toString(end));
 
 
     }
 
-    
-    public static double[] tribonacci(double[] s, int n) {
+
+    public static double[] tribonacciStream(double[] s, int n) {
 
         if (n == 0) {
             return new double[0];
@@ -47,6 +47,27 @@ public class Main {
 
         } else {
             return primArray;
+        }
+
+
+    }
+
+    public static double[] tribonacciSimple(double[] s, int n) {
+
+        // need a new array of max size so do not have to resize
+        double[] tribArray = Arrays.copyOf(s, n);
+
+        //if n <= 3 just return array
+        if (n <= 3) {
+            return tribArray;
+        } else {
+            // add elements as necessary
+            for (int i = 3; i < tribArray.length; i++) {
+
+                tribArray[i] = tribArray[i - 1] + tribArray[i - 2] + tribArray[i - 3];
+            }
+
+            return tribArray;
         }
 
 
