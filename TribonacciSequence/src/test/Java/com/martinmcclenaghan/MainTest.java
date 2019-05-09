@@ -52,5 +52,11 @@ public class MainTest {
 
     }
 
+    @Test
+    public void tribonacciStreamTest (){
+
+        assertArrayEquals(answer, Main.tribonacciStream(begin,entries),0);
+    }
+
 
     }
