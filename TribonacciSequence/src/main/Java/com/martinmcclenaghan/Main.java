@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class Main {
 
+    //Details of this challenge can be found here: https://www.codewars.com/kata/tribonacci-sequence/java
+
     public static void main(String[] args) {
 
         double[] start = {1, 1, 1};

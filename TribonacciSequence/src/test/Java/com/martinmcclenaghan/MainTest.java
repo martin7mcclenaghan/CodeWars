@@ -13,9 +13,6 @@ import static org.junit.Assert.*;
 
 public class MainTest {
 
-//must create fields nad constructor as each parameterised test requires a new instance of the class
-    //also need a field to hold the answer
-
     private double[] begin;
     private int entries;
     private double[] answer;
@@ -26,7 +23,6 @@ public class MainTest {
         this.answer = answer;
     }
 
-    //now use collection that will create instances
 
     @Parameterized.Parameters
     public static Collection<Object> testConditions() {
