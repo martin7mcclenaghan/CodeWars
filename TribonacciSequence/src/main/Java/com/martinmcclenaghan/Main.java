@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        double[] start = {0, 1, 1};
+        double[] start = {1, 1, 1};
 
-        double[] end = tribonacciSimple(start, 2);
+        double[] end = tribonacciSimple(start, 10);
 
         System.out.println(Arrays.toString(end));
 
