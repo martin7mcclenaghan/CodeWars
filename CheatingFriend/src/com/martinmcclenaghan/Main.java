@@ -4,6 +4,7 @@ package com.martinmcclenaghan;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -64,7 +65,75 @@ public class Main {
 
         System.out.println(last);
 
+        printList(removeNB(26));
 
+
+    }
+
+    public static List<long[]> removeNB (long n){
+
+        long nSum = 0; // sum of elements 1 -> n
+
+        for (int i = 1; i <= n; i++) {
+
+            nSum += i;
+        }
+
+        //store results in ArrayList of ArrayLists
+        //currently stores a k-permutations for P(26,2)
+
+        ArrayList<ArrayList<Long>> results = new ArrayList<>();
+
+
+        for (long i = 1; i <= n; i++) {
+
+            for (long j = 1; j <= n; j++) {
+
+                if (i != j) {
+
+                   results.add(new ArrayList<Long>(Arrays.asList(i, j, i + j, nSum - (i + j))));
+
+                }
+            }
+        }
+
+        //ArrayList to store results that matter - this needs to be an ArrayList of long []
+        ArrayList<long[]> last = new ArrayList<>();
+        boolean flag = false;
+
+        for (ArrayList<Long> list : results) {
+
+            long aTimesb = list.get(0) * list.get(1);
+            long sumMinusAB = nSum - (list.get(0) + list.get(1));
+
+            if (aTimesb == sumMinusAB) {
+
+                last.add(new long[] {list.get(0), list.get(1)});
+                flag = true;
+
+            }
+
+
+        }
+
+
+        if(flag){
+
+            return last;
+        } else {
+
+            return new ArrayList<>();
+        }
+
+
+    }
+
+    public static void printList (List<long[]> list){
+        
+        for(int i = 0; i < list.size(); i++){
+
+            System.out.println(Arrays.toString(list.get(i)));
+        }
     }
 
 
