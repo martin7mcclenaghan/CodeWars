@@ -17,13 +17,10 @@ public class Main {
         //below is k permutations
 
         int n = 26;
-        int nSum = 0;
+        // sum to n using Faaulhaber's Formula n(n+1) / 2
+        int nSum = (n*(n+1))/2;
 
-        //sum 1 - n
-        for (int i = 1; i <= n; i++) {
 
-            nSum += i;
-        }
 
         System.out.println("Sum of 1 - N equals " + nSum);
 
@@ -34,7 +31,7 @@ public class Main {
 
         for (int i = 1; i <= n; i++) {
 
-            for (int j = 1; j <= n; j++) {
+            for (int j = i+1; j <= n; j++) {
 
                 if (i != j) {
 
@@ -45,6 +42,7 @@ public class Main {
                     if(aTimesb == sumMinusAB) {
 
                         results.add(new ArrayList<Integer>(Arrays.asList(i, j)));
+                        results.add(new ArrayList<Integer>(Arrays.asList(j, i)));
 
                     }
 
@@ -58,17 +56,16 @@ public class Main {
 
         printList(removeNB(26));
 
+        printList(remove(26));
+
 
     }
 
     public static List<long[]> removeNB (long n){
 
-        long nSum = 0; // sum of elements 1 -> n
+        // sum to n using Faulhaber's Formula n(n+1) / 2
 
-        for (int i = 1; i <= n; i++) {
-
-            nSum += i;
-        }
+        long nSum = (n*(n+1))/2;
 
         //store results in ArrayList of long[]
         //currently cycles through k-permutations for P(26,2) only saving results for which
@@ -116,6 +113,39 @@ public class Main {
 
             System.out.println(Arrays.toString(list.get(i)));
         }
+    }
+
+    //Solved algebraically ab = (n*(n+1)/2) - (a+b) to get expression for b in terms of a
+    //where n is known
+    //AND IT WORKS!!!
+
+    public static List<long[]> remove (long n){
+
+        double nSum = (n * (n + 1)) / 2;
+
+        ArrayList<long[]> results = new ArrayList<>();
+        boolean flag = false;
+
+        for (int a = 1; a <= n; a++) {
+
+            double b = ((nSum - a) / (a + 1));
+
+            if (b - Math.floor(b) == 0 && b < n) {
+
+                results.add(new long[]{a, (long)b});
+                flag = true;
+
+            }
+        }
+
+        if(flag){
+
+            return results;
+        } else {
+
+            return new ArrayList<>();
+        }
+
     }
 
 
