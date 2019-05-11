@@ -39,31 +39,22 @@ public class Main {
                 if (i != j) {
 
                     count++;
+                    int aTimesb = i*j;
+                    int sumMinusAB = nSum - (i+j);
 
-                    results.add(new ArrayList<Integer>(Arrays.asList(i, j, i + j, nSum - (i + j))));
+                    if(aTimesb == sumMinusAB) {
+
+                        results.add(new ArrayList<Integer>(Arrays.asList(i, j)));
+
+                    }
 
                 }
             }
         }
 
         System.out.println("Count equals " + count);
-        ArrayList<ArrayList<Integer>> last = new ArrayList<>();
 
-
-
-        for (ArrayList<Integer> list : results) {
-
-            int aTimesb = list.get(0) * list.get(1);
-            int sumMinusAB = nSum - (list.get(0) + list.get(1));
-
-            if (aTimesb == sumMinusAB) {
-
-                last.add(new ArrayList<Integer>(Arrays.asList(list.get(0), list.get(1))));
-
-            }
-        }
-
-        System.out.println(last);
+        System.out.println(results);
 
         printList(removeNB(26));
 
@@ -79,10 +70,12 @@ public class Main {
             nSum += i;
         }
 
-        //store results in ArrayList of ArrayLists
-        //currently stores a k-permutations for P(26,2)
+        //store results in ArrayList of long[]
+        //currently cycles through k-permutations for P(26,2) only saving results for which
+        // a*b = sum to n - a - b.
 
-        ArrayList<ArrayList<Long>> results = new ArrayList<>();
+        ArrayList<long[]> results = new ArrayList<>();
+        boolean flag = false;
 
 
         for (long i = 1; i <= n; i++) {
@@ -91,35 +84,24 @@ public class Main {
 
                 if (i != j) {
 
-                   results.add(new ArrayList<Long>(Arrays.asList(i, j, i + j, nSum - (i + j))));
+                    long aTimesb = i*j;
+                    long sumMinusAB = nSum - (i+j);
+
+                    if(aTimesb == sumMinusAB) {
+
+                        results.add(new long[]{i, j});
+                        flag = true;
+
+                    }
 
                 }
             }
         }
 
-        //ArrayList to store results that matter - this needs to be an ArrayList of long []
-        ArrayList<long[]> last = new ArrayList<>();
-        boolean flag = false;
-
-        for (ArrayList<Long> list : results) {
-
-            long aTimesb = list.get(0) * list.get(1);
-            long sumMinusAB = nSum - (list.get(0) + list.get(1));
-
-            if (aTimesb == sumMinusAB) {
-
-                last.add(new long[] {list.get(0), list.get(1)});
-                flag = true;
-
-            }
-
-
-        }
-
 
         if(flag){
 
-            return last;
+            return results;
         } else {
 
             return new ArrayList<>();
@@ -129,7 +111,7 @@ public class Main {
     }
 
     public static void printList (List<long[]> list){
-        
+
         for(int i = 0; i < list.size(); i++){
 
             System.out.println(Arrays.toString(list.get(i)));
