@@ -2,19 +2,19 @@ package com.martinmcclenaghan;
 
 public class Main {
 
-    //https://www.codewars.com/kata/vasya-clerk/train/java
+    // Details of challenge can be found here https://www.codewars.com/kata/vasya-clerk/train/java
 
 
         public static void main(String[] args) {
 
             int[] start = {25, 25, 25, 25, 50, 100, 50};
 
-            System.out.println(Tickets(start));
+            System.out.println(tickets(start));
 
 
         }
 
-        public static String Tickets(int[] peopleInLine) {
+        public static String tickets(int[] peopleInLine) {
 
             if (peopleInLine[0] != 25) {
                 return "NO";
