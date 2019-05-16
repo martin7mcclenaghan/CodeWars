@@ -1,6 +1,6 @@
 package com.martinmcclenaghan;
 
-//https://www.codewars.com/kata/5547cc7dcad755e480000004/train/java
+// See here for full challenge details: https://www.codewars.com/kata/5547cc7dcad755e480000004/train/java
 
 import java.util.ArrayList;
 import java.util.Arrays;
