@@ -10,116 +10,30 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // take number
-        //product should be equal to 1 - n omitting 2 numbers a and b
-        // return the possible a and b given n for which the above is true
+        // method returns a List of long []
+        // added simple method to print results
+        // when n = 26 the method should return all answers so {[15,21], [21,15]} in this case
+        // In the event there are no answers an empty list is returned
 
-        //below is k permutations
+        //The great thing about this challenge is that brute force won't work so I had to find an
+        //algebraic solution. The first time I have had to do this in programming and certainly something
+        // I will think of more often thanks to g964 who wrote this kata!
 
-        int n = 26;
-        // sum to n using Faaulhaber's Formula n(n+1) / 2
-        int nSum = (n*(n+1))/2;
-
-
-
-        System.out.println("Sum of 1 - N equals " + nSum);
-
-        int count = 0;
-
-        ArrayList<ArrayList<Integer>> results = new ArrayList<>();
-
-
-        for (int i = 1; i <= n; i++) {
-
-            for (int j = i+1; j <= n; j++) {
-
-                if (i != j) {
-
-                    count++;
-                    int aTimesb = i*j;
-                    int sumMinusAB = nSum - (i+j);
-
-                    if(aTimesb == sumMinusAB) {
-
-                        results.add(new ArrayList<Integer>(Arrays.asList(i, j)));
-                        results.add(new ArrayList<Integer>(Arrays.asList(j, i)));
-
-                    }
-
-                }
-            }
-        }
-
-        System.out.println("Count equals " + count);
-
-        System.out.println(results);
-
-        printList(removeNB(26));
-
-        printList(remove(26));
+        List<long[]> result = remove(26);
+        printList(result);
 
 
     }
 
-    public static List<long[]> removeNB (long n){
-
-        // sum to n using Faulhaber's Formula n(n+1) / 2
-
-        long nSum = (n*(n+1))/2;
-
-        //store results in ArrayList of long[]
-        //currently cycles through k-permutations for P(26,2) only saving results for which
-        // a*b = sum to n - a - b.
-
-        ArrayList<long[]> results = new ArrayList<>();
-        boolean flag = false;
-
-
-        for (long i = 1; i <= n; i++) {
-
-            for (long j = 1; j <= n; j++) {
-
-                if (i != j) {
-
-                    long aTimesb = i*j;
-                    long sumMinusAB = nSum - (i+j);
-
-                    if(aTimesb == sumMinusAB) {
-
-                        results.add(new long[]{i, j});
-                        flag = true;
-
-                    }
-
-                }
-            }
-        }
-
-
-        if(flag){
-
-            return results;
-        } else {
-
-            return new ArrayList<>();
-        }
-
-
-    }
-
-    public static void printList (List<long[]> list){
-
-        for(int i = 0; i < list.size(); i++){
-
-            System.out.println(Arrays.toString(list.get(i)));
-        }
-    }
-
-    //Solved algebraically ab = (n*(n+1)/2) - (a+b) to get expression for b in terms of a
-    //where n is known
-    //AND IT WORKS!!!
 
     public static List<long[]> remove (long n){
+
+        //When solved algebraically ab = (n*(n+1)/2) - (a+b). Where n is known you can rearrange to get an
+        // expression for b in terms of a. This is then used in the for loop.
+        // If n is 26 the above can be rearranged for b = (351-a)/(a+1)
+
+        // The only values that fit our description will be whole numbers where both are
+        // less than n - meaning they are inside the sequence.
 
         double nSum = (n * (n + 1)) / 2;
 
@@ -146,6 +60,14 @@ public class Main {
             return new ArrayList<>();
         }
 
+    }
+
+    public static void printList (List<long[]> list){
+
+        for(int i = 0; i < list.size(); i++){
+
+            System.out.println(Arrays.toString(list.get(i)));
+        }
     }
 
 
