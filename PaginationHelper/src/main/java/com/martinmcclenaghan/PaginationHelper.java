@@ -71,7 +71,7 @@ public class PaginationHelper<I> {
 
     public int itemIndex (int itemIndex){
 
-        //item index is zero pages and method returns page number on which that item can be found
+        //item index is zero-based and method returns page number on which that item can be found
 
         int currentPage =  itemIndex / itemsPerPage;
 
