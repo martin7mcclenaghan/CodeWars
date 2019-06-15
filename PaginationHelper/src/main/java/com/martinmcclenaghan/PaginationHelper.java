@@ -26,24 +26,24 @@ public class PaginationHelper<I> {
         return count;
     }
 
-    public int pageCount(){
+    public int pageCount() {
 
         //number of pages starts at 1 however the first page will bear the number zero as is zero-indexed
 
         int total = itemCount();
         int pages = -1;
 
-        if(total % itemsPerPage == 0){
+        if (total % itemsPerPage == 0) {
 
             pages = total / itemsPerPage;
 
-        } else if(total < itemsPerPage && total > 0){
+        } else if (total < itemsPerPage && total > 0) {
 
             pages = 1;
 
-        } else if((total > itemsPerPage) && (total % itemsPerPage != 0)){
+        } else if ((total > itemsPerPage) && (total % itemsPerPage != 0)) {
 
-            pages = (total / itemsPerPage)+ 1;
+            pages = (total / itemsPerPage) + 1;
 
         }
 
@@ -51,34 +51,43 @@ public class PaginationHelper<I> {
 
     }
 
-    public int pageItemCount (int pageIndex){
+    public int pageItemCount(int pageIndex) {
 
         //page index is zero based
         //returns number of items on the current page
 
         int pagesZeroIndex = pageCount() - 1;
 
-        if(pageIndex > pagesZeroIndex){
+        if (pageIndex > pagesZeroIndex) {
             return -1;
-        } else if (pageIndex < pagesZeroIndex){
+        } else if (pageIndex < pagesZeroIndex) {
             return itemsPerPage;
         } else {
 
-            int fullPages = itemCount()/itemsPerPage;
-            return itemCount() - (fullPages*itemsPerPage);
+            int fullPages = itemCount() / itemsPerPage;
+            int lastFullPageIndex = fullPages - 1;
+
+            if (lastFullPageIndex == pageIndex){
+
+                return itemsPerPage;
+            } else {
+
+                return itemCount() - (fullPages * itemsPerPage);
+            }
+
         }
     }
 
-    public int itemIndex (int itemIndex){
+    public int itemIndex(int itemIndex) {
 
         //item index is zero-based and method returns page number on which that item can be found
 
-        int currentPage =  itemIndex / itemsPerPage;
+        int currentPage = itemIndex / itemsPerPage;
 
-        if(itemIndex < 0 || itemIndex+1 > itemCount()){
+        if (itemIndex < 0 || itemIndex + 1 > itemCount()) {
 
             return -1;
-        } else{
+        } else {
 
             return currentPage;
         }
@@ -86,9 +95,9 @@ public class PaginationHelper<I> {
 
     }
 
-    public void printList (){
+    public void printList() {
 
-        for (int i = 0; i < collection.size(); i++){
+        for (int i = 0; i < collection.size(); i++) {
 
             System.out.print(collection.get(i) + " ");
 

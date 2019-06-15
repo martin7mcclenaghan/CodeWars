@@ -48,7 +48,8 @@ public class FurtherPaginationHelperTests {
                 {Arrays.asList(1,2,3,4,5,6), 3, 2, -1, 5, 1},
                 {Arrays.asList(1,2,3,4,5,6,7,8), 4, 1, 4, 8, -1},
                 {Arrays.asList(1,2,3,4,5,6,7,8,9), 5, 1, 4, 0, 0},
-                {Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14), 6, 0, 6, 6, 1}
+                {Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14), 6, 0, 6, 6, 1},
+                {Arrays.asList(1,2,3,4,5,6,7,8), 2, 3, 2, 7, 3}
 
         });
     }
