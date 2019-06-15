@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +19,7 @@ import static org.junit.Assert.*;
 
 public class PaginationHelperTest {
 
-    private PaginationHelper<Integer> helper;
+    private PaginationHelper<Integer> helperTest;
     private List<Integer> collection;
     private int itemsPerPage;
     private int expectedItemCount;
@@ -36,7 +35,7 @@ public class PaginationHelperTest {
 
     @Before
     public void setup() {
-       this.helper = new PaginationHelper <>(this.collection, this.itemsPerPage);
+       this.helperTest = new PaginationHelper <>(this.collection, this.itemsPerPage);
         System.out.println("Before runs here");
 
     }
@@ -57,14 +56,14 @@ public class PaginationHelperTest {
     @Test
     public void itemCount() {
 
-        assertEquals(expectedItemCount,helper.itemCount());
+        assertEquals(expectedItemCount, helperTest.itemCount());
         System.out.println("ItemCount test run");
     }
 
     @Test
     public void pageCount() {
 
-        assertEquals(expectedPageCount,helper.pageCount());
+        assertEquals(expectedPageCount, helperTest.pageCount());
         System.out.println("PageCount test run");
     }
 

@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -16,28 +15,28 @@ import static org.junit.Assert.*;
 
 public class FurtherPaginationHelperTests {
 
-    private PaginationHelper<Integer> helper;
+    private PaginationHelper<Integer> helperTest2;
     private List<Integer> collection;
     private int itemsPerPage;
     private int pageItemCountInput;
-    private int itemIndexInput;
     private int expectedPageItemCount;
+    private int itemIndexInput;
     private int expectedItemIndex;
 
 
-    public FurtherPaginationHelperTests(List<Integer> collection, int itemsPerPage, int pageItemCountInput, int itemIndexInput, int expectedPageItemCount, int expectedItemIndex) {
+    public FurtherPaginationHelperTests(List<Integer> collection, int itemsPerPage, int pageItemCountInput, int expectedPageItemCount, int itemIndexInput, int expectedItemIndex) {
         this.collection = collection;
         this.itemsPerPage = itemsPerPage;
         this.pageItemCountInput = pageItemCountInput;
-        this.itemIndexInput = itemIndexInput;
         this.expectedPageItemCount = expectedPageItemCount;
+        this.itemIndexInput = itemIndexInput;
         this.expectedItemIndex = expectedItemIndex;
     }
 
     @Before
     public void setup() {
-        this.helper = new PaginationHelper <>(this.collection, this.itemsPerPage);
-        System.out.println("Before runs here");
+        this.helperTest2 = new PaginationHelper <>(this.collection, this.itemsPerPage);
+
 
     }
 
@@ -45,11 +44,11 @@ public class FurtherPaginationHelperTests {
     public static Collection <Object> testConditions (){
         return Arrays.asList(new Object[][]{
 
-                {Arrays.asList(1,2,3,4,5), 2, },
-                {Arrays.asList(1,2,3,4,5,6), 3, },
-                {Arrays.asList(1,2,3,4,5,6,7,8), 4},
-                {Arrays.asList(1,2,3,4,5,6,7,8,9), 5},
-                {Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14), 6}
+                {Arrays.asList(1,2,3,4,5), 2, 2, 1, 1, 0},
+                {Arrays.asList(1,2,3,4,5,6), 3, 2, -1, 5, 1},
+                {Arrays.asList(1,2,3,4,5,6,7,8), 4, 1, 4, 8, -1},
+                {Arrays.asList(1,2,3,4,5,6,7,8,9), 5, 1, 4, 0, 0},
+                {Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14), 6, 0, 6, 6, 1}
 
         });
     }
@@ -57,12 +56,14 @@ public class FurtherPaginationHelperTests {
     @Test
     public void pageItemCount(){
 
+        assertEquals(expectedPageItemCount, helperTest2.pageItemCount(pageItemCountInput));
 
     }
 
     @Test
     public void itemIndex (){
 
+        assertEquals(expectedItemIndex, helperTest2.itemIndex(itemIndexInput));
 
     }
 
