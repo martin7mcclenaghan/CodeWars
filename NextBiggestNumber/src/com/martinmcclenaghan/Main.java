@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        long begin = 32841;
+        long begin = 446664954;
         char [] chars = Long.toString(begin).toCharArray();
 
         List<Integer> beginList = new ArrayList<>();
@@ -19,6 +19,10 @@ public class Main {
 
             beginList.add(i,Character.getNumericValue(chars[i]));
         }
+
+        System.out.println("Original List Reads");
+
+        System.out.println(beginList.toString());
 
         //locate digit one
 
@@ -57,14 +61,29 @@ public class Main {
 
         Collections.sort(subList);
 
-        //digit 2 will be to the immediate right of digit 1
+        //digit 2 will be to the immediate right of digit 1 BUT CANNOT BE EQUAL TO DIGIT ONE SO NEED TO COVER THAT
         int digitTwo = subList.get(subList.indexOf(digitOne) + 1);
+        int i = 1;
+        while (digitOne == digitTwo) {
+            digitTwo = subList.get((subList.indexOf(digitOne) + 1 + i));
+            i++;
+
+        }
 
         //now find position of digitTwo in original arrayList
         int digitTwoOriginalPosition = beginList.indexOf(digitTwo);
 
+        System.out.println("Digit one equals " + digitOne);
+        System.out.println("Digit one position is " + digitOneOriginalPosition);
+        System.out.println("Digit two is " + digitTwo);
+        System.out.println("Digit two position is " + digitTwoOriginalPosition);
+
         //swap D1 and D2 in original list
         Collections.swap(beginList,digitOneOriginalPosition,digitTwoOriginalPosition);
+
+        System.out.println("List after swap reads ");
+        System.out.println(beginList.toString());
+
 
         //now need to sort numbers to the right of D1 original position
         //numbers need to be sorted in descending order from the right ie; 128
@@ -73,16 +92,10 @@ public class Main {
         List<Integer> descendingOrder = beginList.subList(digitOneOriginalPosition + 1, beginList.size());
 
         Collections.sort(descendingOrder);
-        Collections.reverse(descendingOrder);
 
         System.out.println("Answer should be");
 
-        for(Integer i : beginList){
-
-            System.out.println(i);
-        }
-
-
+        System.out.println(beginList.toString());
 
 
     }
