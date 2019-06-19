@@ -181,6 +181,7 @@ public class Main {
         }
 
         //now find position of digitTwo in original arrayList
+        //use subList to only look at numbers to right of D1 otherwise can pick up duplicate numbers
         List<Integer> digitTwoList = beginList.subList(digitOneOriginalPosition, beginList.size());
         int digitTwoOriginalPosition = digitTwoList.indexOf(digitTwo) + digitOneOriginalPosition;
 
