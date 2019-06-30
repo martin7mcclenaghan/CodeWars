@@ -10,11 +10,14 @@ public class Dictionary {
         this.words = words;
     }
 
-
     String findMostSimilar(String input) {
 
-        //each edit distance will have its own set of words with that distance
-        //to deal with situation where 2 words were the most similar
+        //Each edit distance will have its own ArrayList of words with that distance.
+        //This deals with the situation where there may be more than one answer and multiple words with the same
+        //edit distance. The question has been set so there is only ever one answer and the method must return a String
+        //so method returns the only entry with the lowest edit distance.
+
+        System.out.println("Word is " + input);
 
         int[] resultArray = new int[words.length];
 
@@ -24,7 +27,6 @@ public class Dictionary {
 
             int editDistance = editDistance(input, words[i]);
             resultArray[i] = editDistance;
-
 
             if (!distancePairs.containsKey(editDistance)) {
 
@@ -45,12 +47,15 @@ public class Dictionary {
 
     private int editDistance(String str1, String str2) {
 
+        //Below is my implementation of the Wagner-Fischer Algorithm.
         // For all i and j, d[i,j] will hold the Levenshtein distance between
-        // the first i characters of s and the first j characters of t.
-        // Note that d has (m+1) x (n+1) values.
-        //add 1 to str.length to zero index and account for empty strings in table
+        // the first i characters of str1 and the first j characters of str2.
+        // Note that d has (str1.length() + 1) x (str2.length() + 1) values as empty Strings are also accounted for.
 
         int[][] subProblems = new int[str1.length() + 1][str2.length() + 1];
+
+        //Deals with comparison of either String to an empty String.
+        //See article for full exposition of populating the matrix of edit distances
 
         for (int i = 0; i <= str1.length(); i++) {
 
@@ -67,6 +72,7 @@ public class Dictionary {
             for (int i = 1; i <= str1.length(); i++) {
 
                 //if last characters in Strings are equal then no operation required
+                //subtract one as String.charAt() is zero indexed
                 if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
                     subProblems[i][j] = subProblems[i - 1][j - 1];
 
