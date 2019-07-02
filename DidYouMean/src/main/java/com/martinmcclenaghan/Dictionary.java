@@ -17,8 +17,6 @@ public class Dictionary {
         //edit distance. The question has been set so there is only ever one answer and the method must return a String
         //so method returns the only entry with the lowest edit distance.
 
-        System.out.println("Word is " + input);
-
         int[] resultArray = new int[words.length];
 
         Map<Integer, ArrayList<String>> distancePairs = new HashMap<>();
@@ -72,7 +70,8 @@ public class Dictionary {
             for (int i = 1; i <= str1.length(); i++) {
 
                 //if last characters in Strings are equal then no operation required
-                //subtract one as String.charAt() is zero indexed
+                //subtract one as String.charAt() is zero indexed yet we have started i at 1.
+                //This is to allow space for comparison to an empty String above.
                 if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
                     subProblems[i][j] = subProblems[i - 1][j - 1];
 

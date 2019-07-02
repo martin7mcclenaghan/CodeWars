@@ -1,6 +1,5 @@
 package com.martinmcclenaghan;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -14,33 +13,35 @@ import static org.junit.Assert.*;
 public class SubjectsTest extends BaseTest {
 
     private Dictionary subjects;
-    
-    public SubjectsTest(String mispeltWord, String expected) {
-        super(mispeltWord, expected);
+
+    public SubjectsTest(String misspeltWord, String expected) {
+        super(misspeltWord, expected);
     }
 
     @org.junit.Before
     public void setup() {
-        subjects = new Dictionary(new String []{"Maths", "Geography", "History",
+        subjects = new Dictionary(new String[]{"Maths", "Geography", "History",
                 "English", "French", "German", "Economics", "Science"});
     }
 
     @Parameterized.Parameters
-    public static Collection<Object> testConditions (){
+    public static Collection<Object> testConditions() {
         return Arrays.asList(new Object[][]{
 
                 {"germam", "German"},
                 {"Exonomics", "Economics"},
-                {"Pistory", "History"}
-
+                {"Pistory", "History"},
+                {"Xeograghy", "Geography"},
+                {"Englisch", "English"}
 
 
         });
     }
 
-    @org.junit.Test
-    public void Test (){
+    @Override
+    public void findMostSimilarTest() {
 
         assertEquals(expected, subjects.findMostSimilar(mispeltWord));
+
     }
 }

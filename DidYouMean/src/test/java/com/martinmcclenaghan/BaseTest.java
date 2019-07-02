@@ -1,14 +1,19 @@
 package com.martinmcclenaghan;
 
+import org.junit.Test;
+
 public abstract class BaseTest {
 
    String mispeltWord;
    String expected;
 
-    public BaseTest(String mispeltWord, String expected) {
-        this.mispeltWord = mispeltWord;
+    public BaseTest(String misspeltWord, String expected) {
+        this.mispeltWord = misspeltWord;
         this.expected = expected;
     }
+
+    @Test
+    public abstract void findMostSimilarTest ();
 
 
 }
