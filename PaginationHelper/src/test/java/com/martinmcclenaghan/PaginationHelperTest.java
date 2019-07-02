@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 
-// Parameterised tests for first two methods
-// different list and number of items per page will be used to test methods
-// need to construct new instance of PaginationHelper for each test
+// Parameterised tests for itemCount() and pageCount()
+// List of parameters need to test all methods would be very cluttered and difficult to maintain / scale
+
 
 public class PaginationHelperTest {
 
@@ -30,13 +30,11 @@ public class PaginationHelperTest {
         this.itemsPerPage = itemsPerPage;
         this.expectedItemCount = expectedItemCount;
         this.expectedPageCount = expectedPageCount;
-        System.out.println("Constructor has run");
     }
 
     @Before
     public void setup() {
        this.helperTest = new PaginationHelper <>(this.collection, this.itemsPerPage);
-        System.out.println("Before runs here");
 
     }
 
@@ -57,14 +55,14 @@ public class PaginationHelperTest {
     public void itemCount() {
 
         assertEquals(expectedItemCount, helperTest.itemCount());
-        System.out.println("ItemCount test run");
+
     }
 
     @Test
     public void pageCount() {
 
         assertEquals(expectedPageCount, helperTest.pageCount());
-        System.out.println("PageCount test run");
+
     }
 
 

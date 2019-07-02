@@ -23,7 +23,7 @@ public class Main {
 
     public static long nextSmallerNumber (long n){
 
-        //when viewed from the right find a number not in descending order ie where L > R
+        //when viewed from the right find a number not in descending order ie where L > R, this is Digit 1
 
         char [] chars = Long.toString(n).toCharArray();
 
@@ -35,7 +35,7 @@ public class Main {
 
         }
 
-        // now to locate D1
+        // now to locate Digit 1
 
         int digitOneOriginalPosition = 0;
         boolean flag = false;
@@ -58,29 +58,30 @@ public class Main {
             return -1;
         }
 
-        //locate D2, which is a number to the right of D1 such that it is the largest number smaller than D1
+        //locate Digit 2, which is a number to the right of D1 such that it is the largest number smaller than D1
+        //new ArrayList created as we do not want to change order of original list just yet
 
-        List<Integer> subList = new ArrayList<>();
+        List<Integer> smallerList = new ArrayList<>();
 
         for(int i = digitOneOriginalPosition; i < begin.size(); i++){
 
-            subList.add(begin.get(i));
+            smallerList.add(begin.get(i));
         }
 
-        Collections.sort(subList);
+        Collections.sort(smallerList);
 
         //D2 will now be to the immediate left of D1 but cannot be equal to it
 
-        int digitTwo = subList.get(subList.indexOf(digitOne) -1);
+        int digitTwo = smallerList.get(smallerList.indexOf(digitOne) -1);
         int i = 1;
         while (digitOne == digitTwo) {
-            digitTwo = subList.get((subList.indexOf(digitOne) -1 - i));
+            digitTwo = smallerList.get((smallerList.indexOf(digitOne) -1 - i));
             i++;
 
         }
 
-        //now find position of digitTwo in original arrayList
-        //use sublist to avoid duplicates
+        //now find position of D2 in original arrayList
+        //use List.subList to avoid finding duplicates of D2 in original list
 
         List<Integer> digitTwoList = begin.subList(digitOneOriginalPosition, begin.size());
         int digitTwoOriginalPosition = digitTwoList.indexOf(digitTwo) + digitOneOriginalPosition;
@@ -89,7 +90,7 @@ public class Main {
         Collections.swap(begin,digitOneOriginalPosition,digitTwoOriginalPosition);
 
         //sort numbers to the right of D1's original position in descending order eg. 721
-        //use sublist for this as we want the sort to also take place in the original list
+        //use List.subList for this as we want the sort to also take place in the original list
         List<Integer> reOrder = begin.subList(digitOneOriginalPosition + 1, begin.size());
         Collections.sort(reOrder);
 

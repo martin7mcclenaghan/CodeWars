@@ -19,16 +19,13 @@ public class Main {
 
         char [] chars = Long.toString(n).toCharArray();
 
-        //Use char array as can get numeric values to then enter into ArrayList of Integers
-        //Will also use ArrayList as can be manipulated more easily
-
         List<Integer> beginList = new ArrayList<>();
         for(int i = 0; i < chars.length; i++){
 
             beginList.add(i,Character.getNumericValue(chars[i]));
         }
 
-        //locate digit one which is first integer that is not in ascending order
+        //locate Digit 1 which is first integer that is not in ascending order
         // when digits are viewed from the right
 
         int digitOneOriginalPosition = 0;
@@ -48,32 +45,32 @@ public class Main {
         int digitOne = beginList.get(digitOneOriginalPosition);
 
         //if digits are all in ascending order from the right (meaning all digits are in descending order when read
-        // from the left then there is no larger number that can be made
+        // from the left) then there is no larger number that can be made
 
         if(!flag){
 
             return -1;
         }
 
-        //locate digit 2, which will be the next largest digit that is to the right of D1
+        //locate Digit 2, which will be the next largest digit that is to the right of D1
         //D1 != D2
-        //must create new ArrayList and not use sublist as we need a new instance
-        //sublist merely gives a view of the original list and any changes will be reflected in both Lists
+        //must create new ArrayList and not use List.subList method as we need a new instance
+        //List.subList method merely gives a view of the original list and any changes will be reflected in both Lists
 
-        List<Integer> subList = new ArrayList<>();
+        List<Integer> smallerList = new ArrayList<>();
         for(int i = digitOneOriginalPosition; i < beginList.size(); i++){
 
-            subList.add(beginList.get(i));
+            smallerList.add(beginList.get(i));
         }
 
-        Collections.sort(subList);
+        Collections.sort(smallerList);
 
-        //D2 should now be to the immediate right of D1 but cannot be equal
+        //D2 should now be to the immediate right of D1 but cannot be equal to it
 
-        int digitTwo = subList.get(subList.indexOf(digitOne) + 1);
+        int digitTwo = smallerList.get(smallerList.indexOf(digitOne) + 1);
         int i = 1;
         while (digitOne == digitTwo) {
-            digitTwo = subList.get((subList.indexOf(digitOne) + 1 + i));
+            digitTwo = smallerList.get((smallerList.indexOf(digitOne) + 1 + i));
             i++;
 
         }
@@ -86,8 +83,8 @@ public class Main {
         //swap D1 and D2 in original list
         Collections.swap(beginList,digitOneOriginalPosition,digitTwoOriginalPosition);
 
-        //now need to sort numbers to the right of D1's original position in ascending order eg. 128
-        //can use sublist for this as we want the sort to also take place in the original list
+        //sort numbers to the right of D1's original position in ascending order eg. 128
+        //can use List.subList method for this as we want the sort to also take place in the original list
         List<Integer> ascendingOrder = beginList.subList(digitOneOriginalPosition + 1, beginList.size());
         Collections.sort(ascendingOrder);
 
