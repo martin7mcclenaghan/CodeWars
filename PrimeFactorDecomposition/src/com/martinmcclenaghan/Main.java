@@ -7,11 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        for(String s : createAnswerString(primeFactors(7775460))){
-
-            System.out.println(s);
-        }
-
+        System.out.println(createAnswerString(primeFactors(7)));
+        System.out.println(createAnswerString(primeFactors(30)));
+        System.out.println(createAnswerString(primeFactors(86240)));
+        System.out.println(createAnswerString(primeFactors(7775460)));
 
 
 
@@ -36,7 +35,7 @@ public class Main {
 
         }
 
-        //this will never run as while loop doesnt allow prime number to be passed to PD
+        //this will never run as while loop doesnt allow prime number to be passed to primeDivide method
         return new int[]{0, 0};
 
 
@@ -83,10 +82,10 @@ public class Main {
 
     }
 
-    public static List<String> createAnswerString (List<Integer> list){
+    public static String createAnswerString (List<Integer> list){
 
         ArrayList <Integer> unique = new ArrayList<>();
-        ArrayList<String> answer = new ArrayList<>();
+        ArrayList<String> answerList = new ArrayList<>();
 
         for(int i : list){
 
@@ -115,15 +114,14 @@ public class Main {
                 break;
             } else if(count == 1){
 
-                answer.add("(" + i + ")");
+                answerList.add("(" + i + ")");
             }else {
-
-                answer.add("(" + i + "**" + count + ")");
+                answerList.add("(" + i + "**" + count + ")");
             }
 
         }
 
-        return answer;
+        return String.join("", answerList);
 
     }
 }
