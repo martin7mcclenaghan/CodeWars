@@ -3,7 +3,7 @@ package com.martinmcclenaghan;
 public class PrimeFactorDecomposition {
 
     //returns true if parameter is a prime number
-    private static boolean isPrime(int n) {
+    static boolean isPrime(int n) {
 
         for (int i = 2; i <= n / 2; i++) {
 
@@ -19,12 +19,12 @@ public class PrimeFactorDecomposition {
     //method returns prime factor decomposition using the 'ladder method' as a thought framework
     static String ladder(int n) {
 
-        if(n <= 1){
+        if (n <= 1) {
 
             return "N must be greater than 1";
         }
 
-        if(isPrime(n)){
+        if (isPrime(n)) {
 
             return "(" + n + ")";
         }
@@ -45,7 +45,7 @@ public class PrimeFactorDecomposition {
             if (count == 1) {
 
                 result.append("(" + factor + ")");
-            } else if(count > 1) {
+            } else if (count > 1) {
 
                 result.append("(" + factor + "**" + count + ")");
             }
