@@ -1,8 +1,5 @@
 package com.martinmcclenaghan;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // https://www.codewars.com/kata/54d512e62a5e54c96200019e - Primes in numbers
 
 public class Main {
