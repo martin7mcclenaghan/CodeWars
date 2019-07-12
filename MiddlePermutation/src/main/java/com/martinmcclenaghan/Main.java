@@ -3,6 +3,7 @@ package com.martinmcclenaghan;
 // https://www.codewars.com/kata/simple-fun-number-159-middle-permutation/train/java
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,12 +18,31 @@ public class Main {
             System.out.println(findMidPerm(s1.substring(0,i)));
         }
 
+        s1 = "aba";
+        System.out.println(findMidPerm(s1));
+
 
 
     }
 
 
     public static String findMidPerm(String s1) {
+
+        if(s1.length() < 2){
+            return "String must have more than 1 letter";
+        }
+
+        char[] checkUnique = s1.toCharArray();
+        Arrays.sort(checkUnique);
+
+        for(int i = 0; i < checkUnique.length-1; i++){
+
+            if(checkUnique[i] == checkUnique[i+1]){
+
+                return "All letters in String must be unique";
+            }
+        }
+
 
         List<Character> start = new ArrayList<>();
         List<Character> result = new ArrayList<>();

@@ -25,13 +25,17 @@ public class MainTest {
     public static Collection<Object> testConditions (){
         return Arrays.asList(new Object[][]{
 
-
-
+                {"abc", "bac"},
+                {"abcdxgz", "dczxgba"},
+                {"znejlvf", "ljzvnfe"},
+                {"twxdkhcsfbjgunvmeyopz", "nmzyxwvutspokjhgfedcb"},
+                {"mldsrjfhonzqbpyxvuce", "nzyxvusrqpomljhfedcb"}
 
         });
     }
 
     @Test
     public void findMidPerm() {
+        assertEquals(expectedOutput, Main.findMidPerm(input));
     }
 }
