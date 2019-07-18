@@ -43,20 +43,23 @@ public class Main {
     public static int maxContiguousSum(int[] array){
 
         int localMax = 0;
-        int globalMax = Integer.MIN_VALUE;
+        int tracker = Integer.MIN_VALUE;
 
         for(int i = 0; i < array.length; i++){
 
             localMax = Integer.max(array[i], array[i] + localMax);
 
-            if(localMax > globalMax){
+            if(localMax > tracker){
 
-                globalMax = localMax;
+                tracker = localMax;
             }
         }
 
-        return globalMax;
-
+        if(tracker > 0){
+            return tracker;
+        } else{
+            return 0;
+        }
 
     }
 
