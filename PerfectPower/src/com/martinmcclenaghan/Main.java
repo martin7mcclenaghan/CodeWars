@@ -2,7 +2,6 @@ package com.martinmcclenaghan;
 
 //https://www.codewars.com/kata/whats-a-perfect-power-anyway/java
 
-import java.sql.Time;
 import java.util.*;
 
 public class Main {
