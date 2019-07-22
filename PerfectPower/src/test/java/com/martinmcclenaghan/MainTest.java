@@ -24,10 +24,14 @@ public class MainTest {
     public static Collection<Object> testConditions() {
         return Arrays.asList(new Object[][]{
 
+                {0,null},
+                {-144, null},
+                {7,null},
+                {101,null},
                 {8, new int []{2,3}},
                 {81, new int [] {9,2}},
+                {484, new int [] {22,2}},
                 {175616, new int []{56,3}},
-                {7,null},
                 {31640625, new int []{5625,2}}
 
 

@@ -24,9 +24,9 @@ public class Main {
         System.out.println("List of first 20 perfect power numbers");
 
         int count = 1;
-        int i = 2;
+        int i = 0;
 
-        while(count <= 20){
+        while (count <= 20) {
 
             int[] answers = isPerfectPower(i);
 
@@ -44,7 +44,7 @@ public class Main {
 
     //method to find all factors of a given number
     // 1 and n purposefully ignored as do not help with PP calculations
-    public static List<Integer> allFactors (int n){
+    public static List<Integer> allFactors(int n) {
 
         ArrayList<Integer> factors = new ArrayList<>();
         int count = 0;
@@ -54,7 +54,7 @@ public class Main {
                 factors.add(i);
                 count++;
                 if ((n / i) > Math.sqrt(n)) {
-                    factors.add(n/i);
+                    factors.add(n / i);
                     count++;
                 }
             }
@@ -64,18 +64,24 @@ public class Main {
         return factors;
     }
 
-    public static int[] isPerfectPower (int n){
+    public static int[] isPerfectPower(int n) {
+
+        if(n < 0){
+
+            System.out.println("Please enter positive integer to test if perfect power");
+            return null;
+        }
 
         //will return first answer found or null
         //change return type to ArrayList to record all answers
         int[] answers = new int[2];
-        double logLim = Math.log(n)/Math.log(2);
+        double logLim = Math.log(n) / Math.log(2);
         boolean flag = false;
 
-        for(int i : allFactors(n)){
+        for (int i : allFactors(n)) {
 
-            for(int j = 2; j <= logLim; j++){
-                if(Math.pow(i,j) == n){
+            for (int j = 2; j <= logLim; j++) {
+                if (Math.pow(i, j) == n) {
 
                     answers[0] = i;
                     answers[1] = j;
@@ -85,9 +91,9 @@ public class Main {
 
         }
 
-        if(flag){
+        if (flag) {
             return answers;
-        } else{
+        } else {
             return null;
         }
     }
