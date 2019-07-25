@@ -1,5 +1,10 @@
 package com.martinmcclenaghan;
 
+//Solution below works for both challenges.
+//LengthLCS method returns the length of the longest common subsequence and is not needed
+//to complete the challenges. It is included as it was part of the study that led me to the answer
+//https://www.codewars.com/kata/longest-common-subsequence-performance-version/train/java
+//https://www.codewars.com/kata/longest-common-subsequence/java
 
 import java.util.Arrays;
 

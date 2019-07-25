@@ -26,6 +26,10 @@ public class MainTest {
     public static Collection<Object> testConditions (){
         return Arrays.asList(new Object[][]{
 
+                {"132535365", "123456789", "12356"},
+                {"abcdefghijklmnopq", "apcdefghijklmnobq", "acdefghijklmnoq"},
+                {}
+
 
 
         });
