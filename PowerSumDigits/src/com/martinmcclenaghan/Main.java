@@ -9,8 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Output first 20 numbers in the sequence
+
         for(int i = 1; i <=20; i++){
-            System.out.println(powerSumDigTerm(i));
+            System.out.println("Term " + i + " in sequence is " + powerSumDigTerm(i));
         }
 
 

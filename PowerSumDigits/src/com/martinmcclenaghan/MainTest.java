@@ -22,10 +22,18 @@ public class MainTest {
 
     @Parameterized.Parameters
     public static Collection<Object> testConditions (){
-        return Arrays.asList(new Object [][]{
+        return Arrays.asList((Object[]) new Object [][]{
 
-
-
+                {21, 27512614111L},
+                {15, 60466176},
+                {17, 612220032},
+                {18, 8303765625L},
+                {12, 17210368},
+                {23, 68719476736L},
+                {9, 390625},
+                {23, 68719476736L},
+                {10, 614656},
+                {27, 6722988818432L}
 
         });
     }
