@@ -12,7 +12,9 @@ public class Main {
         If we raise all factors to the power of an integer k where 1 < k < log_2(n)
         If n is a perfect power then one of the results of the above will be equal to n
 
-        Time complexity for this solutions is linear O(a + bc) where;
+        More can be read on this method here https://en.wikipedia.org/wiki/Perfect_power
+
+        Time complexity for this solutions can be described by O(a + bc) where;
         a is equal to the sqrt (n)
         b is equal to the number of factors of n excluding 1 and n
         c is equal to log_2(n)
