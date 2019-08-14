@@ -15,7 +15,8 @@ public class Main {
 
         for(int i = 2; i <= s1.length(); i++){
 
-            System.out.println(findMidPerm(s1.substring(0,i)));
+            System.out.println("String considered is " + s1.substring(0,i) + " and middle permutation is "
+                            + findMidPerm(s1.substring(0,i)));
         }
 
         s1 = "aba";

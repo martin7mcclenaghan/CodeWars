@@ -31,10 +31,6 @@ public class MainTest {
                 {"7M7;JAO640>;51HE1<JD", "FL9=;GF7KG4K2@NA8<0R", "7A0"},
                 {"P@E=N2N8=>3C287GS5IA", "24R;1P;36;4=RMBFNK6K", "P=N"},
                 {"@8SK6;R7R?LNF7I5@C:Q", "N8L8LB6:3?BSBF3I3KLJ", "86?FI"}
-                {}
-
-
-
         });
     }
 
