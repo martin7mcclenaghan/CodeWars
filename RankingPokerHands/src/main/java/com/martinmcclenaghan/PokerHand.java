@@ -311,17 +311,21 @@ public class PokerHand {
         List<Integer> opponentHandValues = listCardValues(oppDescription);
         Collections.sort(opponentHandValues);
 
-        int myKicker = handValues.get(4);
-        int oppKicker = opponentHandValues.get(4);
+        for(int i = 4; i >= 0; i--){
 
-        if (myKicker > oppKicker) {
-            return Result.WIN;
+            int myKicker = handValues.get(i);
+            int oppKicker = opponentHandValues.get(i);
 
-        } else if (myKicker < oppKicker) {
-            return Result.LOSS;
-        } else {
-            return Result.TIE;
+            if (myKicker > oppKicker) {
+                return Result.WIN;
+
+            } else if (myKicker < oppKicker) {
+                return Result.LOSS;
+            }
+
         }
+
+        return Result.TIE;
 
     }
 
