@@ -44,6 +44,8 @@ public class PokerHand implements Comparable<PokerHand> {
 
     }
 
+    // == public methods ==
+
     @Override
     public int compareTo(PokerHand hand) {
         if(this.compareWith(hand) == Result.WIN){
@@ -55,7 +57,7 @@ public class PokerHand implements Comparable<PokerHand> {
         }
     }
 
-    // == public methods ==
+
     public Result compareWith (PokerHand hand){
 
         if(this.value > hand.value){
@@ -140,10 +142,6 @@ public class PokerHand implements Comparable<PokerHand> {
         }
 
 
-    }
-
-    public int getValue() {
-        return value;
     }
 
     private int assignValue(Strength strength) {
