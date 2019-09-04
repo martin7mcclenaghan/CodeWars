@@ -5,7 +5,6 @@ import java.util.*;
 public class PokerHand implements Comparable<PokerHand> {
 
     // == constants ==
-
     enum Result {WIN, LOSS, TIE}
 
     enum Strength {
@@ -22,7 +21,6 @@ public class PokerHand implements Comparable<PokerHand> {
     }
 
     // == fields ==
-
     private String description;
     private Strength classification;
     private int value;
@@ -32,7 +30,6 @@ public class PokerHand implements Comparable<PokerHand> {
     private boolean isStraight;
 
     // == constructor ==
-
     public PokerHand(String userDescription) {
         this.description = faceToNumber(userDescription);
         this.sortedCardValues = listSortedCardValues(this.description);
@@ -45,7 +42,6 @@ public class PokerHand implements Comparable<PokerHand> {
     }
 
     // == public methods ==
-
     @Override
     public int compareTo(PokerHand hand) {
         if(this.compareWith(hand) == Result.WIN){
@@ -57,7 +53,7 @@ public class PokerHand implements Comparable<PokerHand> {
         }
     }
 
-
+    // method that compares one poker hand to another and returns an enum Result.
     public Result compareWith (PokerHand hand){
 
         if(this.value > hand.value){
@@ -91,22 +87,19 @@ public class PokerHand implements Comparable<PokerHand> {
             return compareFour(this.uniqueTotals, hand.uniqueTotals);
 
         } else if(this.classification == Strength.THREE_OF_A_KIND){
-            return compare3(this.uniqueTotals, hand.uniqueTotals);
+            return compareThree(this.uniqueTotals, hand.uniqueTotals);
 
         } else if(this.classification == Strength.TWO_PAIR){
             return twoPairCompare(this.uniqueTotals, hand.uniqueTotals);
 
         } else {
-
             return comparePair(this.uniqueTotals, hand.uniqueTotals);
-
         }
-
-
     }
 
-
     // == private methods ==
+
+    //method takes the description of the Hand and returns a Strength enum
     private Strength classifyHand (String description){
         if(isStraight && isFlush && sortedCardValues.contains(13) && sortedCardValues.contains(14)){
             return Strength.ROYAL_FLUSH;
@@ -140,10 +133,9 @@ public class PokerHand implements Comparable<PokerHand> {
                 }
             }
         }
-
-
     }
 
+    // method assigns a numerical to each enum Strength so they can be compared more efficiently
     private int assignValue(Strength strength) {
 
         int strengthValue = 0;
@@ -194,7 +186,7 @@ public class PokerHand implements Comparable<PokerHand> {
         return strengthValue;
     }
 
-    //method converts entered description into readable description
+    //method converts description entered by user into a String comprised solely of numbers
     private String faceToNumber(String description) {
         String allNumbers = description.replaceAll("T", "10").replaceAll("J", "11")
                 .replaceAll("Q", "12").replaceAll("K", "13")
@@ -203,46 +195,39 @@ public class PokerHand implements Comparable<PokerHand> {
         return allNumbers;
     }
 
-    // method returns SORTED list of unique card values
+    // method returns list of card values (2,3...14) sorted in ascending order
     private List<Integer> listSortedCardValues(String description) {
 
         String justValues = description.replaceAll("[A-Z]", ",").replaceAll("\\s+", "");
         String[] array = justValues.split(",");
         List<Integer> valueList = new ArrayList<>();
         for (String string : array) {
-
             valueList.add(Integer.parseInt(string));
-
         }
-
         Collections.sort(valueList);
         return valueList;
     }
 
-    //method produces map of unique card values and number of occurrences
+    //method produces map of unique card values (2,3...14) and number of occurrences
     private Map<Integer, Integer> countUniqueTotals(List<Integer> cardValues) {
 
         Set<Integer> uniqueNumbers = new HashSet<>(cardValues);
         Map<Integer, Integer> totals = new HashMap<>();
 
         for (Integer i : uniqueNumbers) {
-
             int count = 0;
 
             for (Integer card : cardValues) {
-
                 if (card.equals(i)) {
                     count++;
                 }
             }
-
             totals.put(i, count);
         }
-
         return totals;
     }
 
-    //returns a set of the suits in the hand
+    //checks the suits of the hand and returns true if the hand is a flush
     private boolean isFlush (String description){
         char[] suits = description.replaceAll("[^A-Z]", "").toCharArray();
         Set<Character> uniqueSuits = new HashSet<>();
@@ -252,7 +237,7 @@ public class PokerHand implements Comparable<PokerHand> {
         return uniqueSuits.size() == 1;
     }
 
-    //returns whether a hand is a straight including low ace
+    //returns true if the hand is a straight - aces are counted as 1 or 14 depending upon situation
     private  boolean isStraight (List<Integer> cardValues){
         List<Integer> lowStraight = new ArrayList<>();
         lowStraight.add(14);
@@ -272,11 +257,11 @@ public class PokerHand implements Comparable<PokerHand> {
         return true;
     }
 
-    //method for RF, SF, S and F and HC to check kicker
+    //Method checks the 'kicker' card in the hand and is essential for the comparison of two hands of the same Strength.
+    //This applies to hands with Strength Royal Flush, Straight Flush, Straight, Flush or High Card.
     private Result checkKicker (List<Integer> mySortedValues, List<Integer> oppSortedValues){
 
         for(int i = mySortedValues.size()-1; i >= 0; i--){
-
             int myKicker = mySortedValues.get(i);
             int oppKicker = oppSortedValues.get(i);
 
@@ -286,14 +271,11 @@ public class PokerHand implements Comparable<PokerHand> {
             } else if (myKicker < oppKicker) {
                 return Result.LOSS;
             }
-
         }
-
-
         return Result.TIE;
-
     }
 
+    //Method is essential in the comparison of two cards with Strength FOUR_OF_A_KIND
     private Result compareFour (Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
 
         myTotals = new HashMap<>(myTotals);
@@ -307,7 +289,6 @@ public class PokerHand implements Comparable<PokerHand> {
                 myFour = i;
                 break;
             }
-
         }
 
         for(Integer i : oppTotals.keySet()){
@@ -332,7 +313,8 @@ public class PokerHand implements Comparable<PokerHand> {
         }
     }
 
-    private Result compare3 (Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
+    //Method is essential in the comparison of two cards with Strength THREE_OF_A_KIND
+    private Result compareThree(Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
         myTotals = new HashMap<>(myTotals);
         oppTotals = new HashMap<>(oppTotals);
 
@@ -365,10 +347,10 @@ public class PokerHand implements Comparable<PokerHand> {
             List<Integer> oppKickers = new ArrayList<>(oppTotals.keySet());
             Collections.sort(oppKickers);
             return checkKicker(myKickers, oppKickers);
-
         }
     }
 
+    //Method is essential in the comparison of two cards with Strength PAIR
     private Result comparePair (Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
         myTotals = new HashMap<>(myTotals);
         oppTotals = new HashMap<>(oppTotals);
@@ -380,7 +362,6 @@ public class PokerHand implements Comparable<PokerHand> {
                 myTwo = i;
                 break;
             }
-
         }
 
         for(Integer i : oppTotals.keySet()){
@@ -406,13 +387,13 @@ public class PokerHand implements Comparable<PokerHand> {
         }
     }
 
+    //Method is essential in the comparison of two cards with Strength FULL_HOUSE
     private Result fullHouseCompare (Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
 
         int myThreeCards = 0;
         int myTwoCards = 0;
 
         for (Integer card : myTotals.keySet()) {
-
             if (myTotals.get(card) == 3) {
                 myThreeCards = card;
 
@@ -426,7 +407,6 @@ public class PokerHand implements Comparable<PokerHand> {
         int oppTwoCards = 0;
 
         for (Integer card : oppTotals.keySet()) {
-
             if (oppTotals.get(card) == 3) {
                 oppThreeCards = card;
 
@@ -453,13 +433,14 @@ public class PokerHand implements Comparable<PokerHand> {
                 return Result.TIE;
             }
         }
-
     }
 
+    //Method is essential in the comparison of two cards with Strength TWO_PAIR
     private Result twoPairCompare (Map<Integer, Integer> myTotals, Map<Integer, Integer> oppTotals){
 
         List<Integer> myPairList = new ArrayList<>();
         Integer myKicker = 0;
+
         for (Integer card : myTotals.keySet()) {
 
             if (myTotals.get(card) == 2) {
@@ -510,9 +491,6 @@ public class PokerHand implements Comparable<PokerHand> {
                     return Result.TIE;
                 }
             }
-
         }
-
     }
-
 }
