@@ -1,15 +1,20 @@
 package com.martinmcclenaghan;
 
-//Solution below works for both challenges.
-//https://www.codewars.com/kata/longest-common-subsequence-performance-version/train/java
-//https://www.codewars.com/kata/longest-common-subsequence/java
-//LengthLCS method returns the length of the longest common subsequence and is not needed
-//to complete the challenges. It is included as it was part of the study that led me to the answer
-
-
 import java.util.Arrays;
 
 public class Main {
+
+/*
+Solution below works for both challenges.
+https://www.codewars.com/kata/longest-common-subsequence-performance-version/train/java
+https://www.codewars.com/kata/longest-common-subsequence/java
+
+LengthLCS method returns the length of the longest common subsequence and is not needed
+to complete the challenges. It is included as it was part of the study that led me to the answer
+
+Consideration of the article here https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+led to the adaption of the pseudocode into Java.
+*/
 
     public static void main(String[] args) {
 
@@ -44,6 +49,8 @@ public class Main {
             Y[i] = s2.charAt(i - 1);
         }
 
+        //C will be the table of results holding the length of the longest common subsequences for all variations of
+        // X and Y
         int[][] C = new int[X.length][Y.length];
 
         for (int i = 0; i < X.length; i++) {
@@ -71,12 +78,13 @@ public class Main {
             }
 
         }
-
-
         return backTrack(C, X, Y, X.length - 1, Y.length - 1);
 
     }
 
+    /* Using the formal definition of the Longest Common Subsequence derived in the article the backtrack function
+    'walks' through the table of results and will read out the first available Longest Common Subsequence as there
+     may be multiple.*/
     public static String backTrack(int[][] C, char[] X, char[] Y, int i, int j) {
 
         if ((i == 0) || (j == 0)) {
@@ -86,6 +94,8 @@ public class Main {
 
         if (X[i] == Y[j]) {
 
+            //if the two elements are equal then that element must form part of the LCS so is appended to the String
+            // that will be returned and we continue up and left on the table of results.
             return backTrack(C, X, Y, i - 1, j - 1) + X[i];
 
         }
@@ -157,8 +167,5 @@ public class Main {
 
 
     }
-
-
-
 }
 
