@@ -1,4 +1,5 @@
 package com.martinmcclenaghan;
+// Challenge from Code Wars can be found here https://www.codewars.com/kata/sortable-poker-hands
 
 public class Main {
 
