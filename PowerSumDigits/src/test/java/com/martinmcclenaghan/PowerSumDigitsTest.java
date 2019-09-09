@@ -40,6 +40,6 @@ public class PowerSumDigitsTest {
 
     @Test
     public void powerSumDigTermTest (){
-        assertEquals(expected, AvengersClerkMain.powerSumDigTerm(input));
+        assertEquals(expected, PowerSumDigitsMain.powerSumDigTerm(input));
     }
 }

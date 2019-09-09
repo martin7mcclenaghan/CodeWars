@@ -7,8 +7,8 @@ public class RankingPokerHandsMain {
 
     public static void main(String[] args) {
 
-        SortablePokerHand myHand = new SortablePokerHand("2S 2H 4H 8S 4C");
-        SortablePokerHand oppHand = new SortablePokerHand("7D 4D 4H 2C 2S");
+        PokerHand myHand = new PokerHand("2S 2H 4H 8S 4C");
+        PokerHand oppHand = new PokerHand("7D 4D 4H 2C 2S");
         System.out.println("My hand is a " + myHand.getClassification() + " with value " + myHand.getValue());
         System.out.println("Opp hand is a " + oppHand.getClassification()  + " with value " + oppHand.getValue());
         System.out.println(myHand.compareWith(oppHand));
