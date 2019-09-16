@@ -33,9 +33,9 @@ led to the adaption of the pseudocode into Java.
         char[] X = new char[s1.length() + 1];
         char[] Y = new char[s2.length() + 1];
 
-        //added terms below so the Arrays X,Y and store of results C
-        // has C[X.length][Y.length] dimensions
+        //added terms below to the Arrays X,Y
         //if this is not done I found backtracking confusing to perform
+        //as a result of this the store of results C now has C[X.length][Y.length] dimensions
         X[0] = 'o';
         Y[0] = 'o';
 
