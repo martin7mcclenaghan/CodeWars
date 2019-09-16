@@ -10,9 +10,9 @@ public class Dictionary {
         this.words = words;
     }
 
-    String findMostSimilar(String input) {
+    public String findMostSimilar(String input) {
 
-        //Each edit distance will have its own ArrayList of words with that distance.
+        //Each edit distance will have its own array of words with that distance.
         //This deals with the situation where there may be more than one answer and multiple words with the same
         //edit distance. The question has been set so there is only ever one answer and the method must return a String
         //so method returns the only entry with the lowest edit distance.
@@ -43,18 +43,20 @@ public class Dictionary {
 
     }
 
-    private int editDistance(String str1, String str2) {
+ /*   Below is my implementation of the Wagner-Fischer Algorithm which can be found below:
+    https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
+    It may also be useful to consider https://en.wikipedia.org/wiki/Levenshtein_distance
+    */
 
-        //Below is my implementation of the Wagner-Fischer Algorithm.
-        // For all i and j, d[i,j] will hold the Levenshtein distance between
-        // the first i characters of str1 and the first j characters of str2.
-        // Note that d has (str1.length() + 1) x (str2.length() + 1) values as empty Strings are also accounted for.
+    private int editDistance(String str1, String str2) {
+        /*
+        For all i and j, d[i,j] will hold the Levenshtein distance between
+        the first i characters of str1 and the first j characters of str2.
+        Note that d has (str1.length() + 1) x (str2.length() + 1) values as empty Strings are also accounted for.*/
 
         int[][] subProblems = new int[str1.length() + 1][str2.length() + 1];
 
         //Deals with comparison of either String to an empty String.
-        //See article for full exposition of populating the matrix of edit distances
-
         for (int i = 0; i <= str1.length(); i++) {
 
             subProblems[i][0] = i;
@@ -85,17 +87,8 @@ public class Dictionary {
                     Arrays.sort(findMinOf);
                     subProblems[i][j] = findMinOf[0];
                 }
-
-
             }
         }
-
-
         return subProblems[str1.length()][str2.length()];
-
-
     }
-
-
-
 }
