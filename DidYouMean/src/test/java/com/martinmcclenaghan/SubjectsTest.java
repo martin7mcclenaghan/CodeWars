@@ -41,7 +41,7 @@ public class SubjectsTest extends BaseTest {
     @Override
     public void findMostSimilarTest() {
 
-        assertEquals(expected, subjects.findMostSimilar(mispeltWord));
+        assertEquals(expected, subjects.findMostSimilar(misspeltWord));
 
     }
 }

@@ -40,7 +40,7 @@ public class ClothesTest extends BaseTest {
     @Override
     public void findMostSimilarTest() {
 
-        assertEquals(expected, clothes.findMostSimilar(mispeltWord));
+        assertEquals(expected, clothes.findMostSimilar(misspeltWord));
 
     }
 }

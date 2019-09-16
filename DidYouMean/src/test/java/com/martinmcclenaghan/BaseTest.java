@@ -4,11 +4,11 @@ import org.junit.Test;
 
 public abstract class BaseTest {
 
-   String mispeltWord;
+   String misspeltWord;
    String expected;
 
     public BaseTest(String misspeltWord, String expected) {
-        this.mispeltWord = misspeltWord;
+        this.misspeltWord = misspeltWord;
         this.expected = expected;
     }
 

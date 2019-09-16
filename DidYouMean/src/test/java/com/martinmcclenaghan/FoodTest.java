@@ -39,7 +39,7 @@ public class FoodTest extends BaseTest {
     @Override
     public void findMostSimilarTest() {
 
-        assertEquals(expected, foods.findMostSimilar(mispeltWord));
+        assertEquals(expected, foods.findMostSimilar(misspeltWord));
 
     }
 }
