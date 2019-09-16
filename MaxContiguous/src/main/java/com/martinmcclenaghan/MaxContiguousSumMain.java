@@ -8,13 +8,10 @@ public class MaxContiguousSumMain {
 
     public static void main(String[] args) {
 
-
         int[] start = new int[]{-8, -10, -12, -2, -3, 5};
 
         System.out.println(maxContiguousSum(start));
         System.out.println(maxContiguousSumAddition(start));
-
-
     }
 
     //below is based more heavily on Kadane's alogrithm
@@ -32,9 +29,6 @@ public class MaxContiguousSumMain {
 
         Arrays.sort(array);
         return array[array.length-1];
-
-
-
     }
 
     //Based on a different implementation of Kadane's algorithm
@@ -60,8 +54,5 @@ public class MaxContiguousSumMain {
         } else{
             return 0;
         }
-
     }
-
-
 }
