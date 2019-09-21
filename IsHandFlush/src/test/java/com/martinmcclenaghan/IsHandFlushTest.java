@@ -24,7 +24,8 @@ public class IsHandFlushTest {
                 {new String [] {"2S", "4C", "2D", "AH", "QD"}, false},
                 {new String []{"4D", "5D", "QD", "KD", "AD"}, true},
                 {new String [] {"7S", "5H", "4C", "KS", "AC"}, false},
-                {new String [] {"4H", "QH", "AH", "2H", "9H"}, true}
+                {new String [] {"4H", "QH", "AH", "2H", "9H"}, true},
+                {new String [] {"8D", "6C,","AS", "JC", "KC"}, false}
 
 
         });
