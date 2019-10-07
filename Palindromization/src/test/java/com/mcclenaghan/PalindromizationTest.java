@@ -27,7 +27,14 @@ public class PalindromizationTest {
     public static Collection<Object> testConditions (){
         return Arrays.asList(new Object[][] {
 
-                {"123", 7, "1231321"}
+                {"abcd", 2, "aa"},
+                {"abcd", 3, "aba"},
+                {"abcd", 4, "abba"},
+                {"abcd", 5, "abcba"},
+                {"abcd", 6, "abccba"},
+                { " ", 3, "elements string cannot be < 2"},
+                {"abcd", 1, "elements string cannot be < 2"},
+
 
 
         });

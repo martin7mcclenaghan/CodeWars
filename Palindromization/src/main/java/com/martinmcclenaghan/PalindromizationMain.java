@@ -17,7 +17,7 @@ public class PalindromizationMain {
         char[] elementsArray = elements.toCharArray();
 
         if (elements.isBlank() || n < 2) {
-            return "Error!";
+            return "elements string cannot be < 2";
         }
 
         StringBuilder stringBuilder = new StringBuilder();
