@@ -24,7 +24,9 @@ public class HighestScoringWordTest {
     public static Collection<Object> testConditions (){
         return Arrays.asList(new Object[][] {
 
-                {"what time are we climbing up to the volcano", "volcano"}
+                {"what time are we climbing up to the volcano", "volcano"},
+                {"by the time i get to phoenix", "phoenix"},
+                {"the result of an experiment", "experiment"}
 
         });
     }
